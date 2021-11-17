@@ -7,13 +7,12 @@ const twitterSchema = new Schema({
   },
   likes: {
     type: Number,
-    required: true,
+    default: 0,
   },
-  date:{
-    type:Date,
-    default:Date.now
-  }
-
+  date: {
+    type: Date,
+    default: Date.now,
+  },
 });
 
 const Twit = model("tuitah", twitterSchema, "tuits");
