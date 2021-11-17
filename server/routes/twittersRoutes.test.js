@@ -1,14 +1,12 @@
-/* require("dotenv").config();
+require("dotenv").config();
 const mongoose = require("mongoose");
 const supertest = require("supertest");
-const bcrypt = require("bcrypt");
 const { app, initializeServer } = require("../index");
 const initializeMongoDB = require("../../database/index");
 const Twit = require("../../database/models/twitter");
 
 const request = supertest(app);
 let server;
-let token;
 
 beforeAll(async () => {
   await initializeMongoDB(process.env.DB_STRING_TEST);
@@ -55,4 +53,4 @@ describe("Given a /twits router", () => {
       expect(body).toHaveProperty("likes", 10);
     });
   });
-}); */
+});
