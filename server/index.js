@@ -31,8 +31,8 @@ const initializeServer = (port) =>
     });
   });
 
-app.use("/twits", twittersRoutes);
 app.use(morgan("dev"));
+app.use("/twits", twittersRoutes);
 
 app.use(notFoundErrorHandler);
 app.use(generalErrorHandler);

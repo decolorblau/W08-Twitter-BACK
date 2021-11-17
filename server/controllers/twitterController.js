@@ -14,7 +14,8 @@ const createTwit = async (req, res, next) => {
     const twit = req.body;
     const newTwit = await Twit.create(twit);
     res.json(newTwit);
-  } catch (error) {
+  } catch {
+    const error = new Error("Something wrong");
     error.code = 400;
     error.message = "Error on creating a twit!";
     next(error);

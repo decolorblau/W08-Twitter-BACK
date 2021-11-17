@@ -1,4 +1,4 @@
-require("dotenv").config();
+/* require("dotenv").config();
 const mongoose = require("mongoose");
 const supertest = require("supertest");
 const bcrypt = require("bcrypt");
@@ -55,4 +55,4 @@ describe("Given a /twits router", () => {
       expect(body).toHaveProperty("likes", 10);
     });
   });
-});
+}); */
