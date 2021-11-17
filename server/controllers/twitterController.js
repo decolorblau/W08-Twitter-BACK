@@ -21,7 +21,24 @@ const createTwit = async (req, res, next) => {
   }
 };
 
+const deleteTwit = async (req, res, next) => {
+  const { id } = req.params;
+  try {
+    const twit = await Twit.findByIdAndDelete(id);
+    if (!twit) {
+      const error = new Error("Twit not found.");
+      error.code = 404;
+      next(error);
+    } else {
+      res.status(200).json(twit);
+    }
+  } catch (error) {
+    next(error);
+  }
+};
+
 module.exports = {
   getTwit,
   createTwit,
+  deleteTwit,
 };
