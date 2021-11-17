@@ -1,7 +1,7 @@
 const express = require("express");
 const morgan = require("morgan");
 const cors = require("cors");
-const debug = require("debug")("tuit:server");
+const debug = require("debug")("twitter:server");
 const chalk = require("chalk");
 
 const app = express();
