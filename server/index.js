@@ -7,6 +7,7 @@ const {
   notFoundErrorHandler,
   generalErrorHandler,
 } = require("./middlewares/errors");
+const twittersRoutes = require("./routes/twittersRoutes");
 
 const app = express();
 app.use(cors());
@@ -31,6 +32,7 @@ const initializeServer = (port) =>
   });
 
 app.use(morgan("dev"));
+app.use("/twits", twittersRoutes);
 
 app.use(notFoundErrorHandler);
 app.use(generalErrorHandler);

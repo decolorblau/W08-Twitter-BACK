@@ -14,9 +14,26 @@ const createTwit = async (req, res, next) => {
     const twit = req.body;
     const newTwit = await Twit.create(twit);
     res.json(newTwit);
-  } catch (error) {
+  } catch {
+    const error = new Error("Something wrong");
     error.code = 400;
     error.message = "Error on creating a twit!";
+    next(error);
+  }
+};
+
+const deleteTwit = async (req, res, next) => {
+  const { id } = req.params;
+  try {
+    const twit = await Twit.findByIdAndDelete(id);
+    if (!twit) {
+      const error = new Error("Twit not found.");
+      error.code = 404;
+      next(error);
+    } else {
+      res.status(200).json(twit);
+    }
+  } catch (error) {
     next(error);
   }
 };
@@ -24,4 +41,5 @@ const createTwit = async (req, res, next) => {
 module.exports = {
   getTwit,
   createTwit,
+  deleteTwit,
 };

@@ -1,17 +1,17 @@
 const express = require("express");
 const { validate } = require("express-validation");
 const {
-  getTwitter,
-  createTwitter,
-  deleteTwitter,
+  getTwit,
+  createTwit,
+  deleteTwit,
 } = require("../controllers/twitterController");
 
 const twitterSchema = require("../schemas/twitterSchema");
 
 const router = express.Router();
 
-router.get("/", getTwitter);
-router.post("/", validate(twitterSchema), createTwitter);
-router.delete("/:id", deleteTwitter);
+router.get("/", getTwit);
+router.post("/", validate(twitterSchema), createTwit);
+router.delete("/:id", deleteTwit);
 
 module.exports = router;
