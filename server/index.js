@@ -3,6 +3,10 @@ const morgan = require("morgan");
 const cors = require("cors");
 const debug = require("debug")("twitter:server");
 const chalk = require("chalk");
+const {
+  notFoundErrorHandler,
+  generalErrorHandler,
+} = require("./middlewares/errors");
 
 const app = express();
 app.use(cors());
@@ -27,5 +31,8 @@ const initializeServer = (port) =>
   });
 
 app.use(morgan("dev"));
+
+app.use(notFoundErrorHandler);
+app.use(generalErrorHandler);
 
 module.exports = { initializeServer, app };
