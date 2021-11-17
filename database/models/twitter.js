@@ -9,6 +9,11 @@ const twitterSchema = new Schema({
     type: Number,
     required: true,
   },
+  date:{
+    type:Date,
+    default:Date.now
+  }
+
 });
 
 const Twit = model("tuitah", twitterSchema, "tuits");
