@@ -1,7 +1,6 @@
 require("dotenv").config();
 const mongoose = require("mongoose");
 const supertest = require("supertest");
-const bcrypt = require("bcrypt");
 const { app, initializeServer } = require("../index");
 const initializeMongoDB = require("../../database/index");
 const Twit = require("../../database/models/twitter");
