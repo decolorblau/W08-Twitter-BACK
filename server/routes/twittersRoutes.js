@@ -14,6 +14,6 @@ const router = express.Router();
 router.get("/", getTwit);
 router.post("/", validate(twitterSchema), createTwit);
 router.delete("/:id", deleteTwit);
-router.patch("/:id", likeTwit);
+router.patch("/like/:id", likeTwit);
 
 module.exports = router;

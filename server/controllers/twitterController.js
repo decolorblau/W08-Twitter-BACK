@@ -39,17 +39,18 @@ const deleteTwit = async (req, res, next) => {
 };
 
 const likeTwit = async (req, res, next) => {
-  const { id } = req.params;
+  console.log("hola");
   try {
-    const twit = await Twit.findByIdAndUpdate(id);
+    const { id } = req.params;
+    const twit = await Twit.findById(id);
     if (!twit) {
       const error = new Error("Twit not found.");
       error.code = 404;
-      next(error);
-    } else {
-      twit.likes++;
-      res.status(200).json(twit);
+      return next(error);
     }
+    twit.likes += 1;
+    await twit.save();
+    return res.status(200).json(twit);
   } catch (error) {
     next(error);
   }
