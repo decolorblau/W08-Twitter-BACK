@@ -1,7 +1,6 @@
 require("dotenv").config();
 const mongoose = require("mongoose");
 const supertest = require("supertest");
-const bcrypt = require("bcrypt");
 const { app, initializeServer } = require("../index");
 const initializeMongoDB = require("../../database/index");
 const Twit = require("../../database/models/twitter");
@@ -24,7 +23,7 @@ beforeEach(async () => {
   });
   await Twit.create({
     date: "2021-11-18T18:30:21.764Z",
-    _id: "61969bbd605684dcf8d48ada",
+    _id: "6196b9360b68e1943fa74276",
     text: "hello",
     likes: 2,
   });
@@ -39,7 +38,7 @@ afterAll((done) => {
 
 describe("Given a /twits router", () => {
   describe("When a Get request to /twits/ arrives", () => {
-    test.only("Then it should respond with an array of twits and a 200 status", async () => {
+    test("Then it should respond with an array of twits", async () => {
       const {
         body: [arr1, arr2],
       } = await request.get("/twits/").expect(200);
@@ -50,9 +49,10 @@ describe("Given a /twits router", () => {
         text: "Welcome",
         likes: 3,
       });
+
       expect(arr2).toEqual({
         date: "2021-11-18T18:30:21.764Z",
-        id: "61969bbd605684dcf8d48ada",
+        id: "6196b9360b68e1943fa74276",
         text: "hello",
         likes: 2,
       });
