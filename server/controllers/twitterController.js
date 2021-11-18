@@ -38,8 +38,26 @@ const deleteTwit = async (req, res, next) => {
   }
 };
 
+const likeTwit = async (req, res, next) => {
+  const { id } = req.params;
+  try {
+    const twit = await Twit.findByIdAndUpdate(id);
+    if (!twit) {
+      const error = new Error("Twit not found.");
+      error.code = 404;
+      next(error);
+    } else {
+      twit.likes++;
+      res.status(200).json(twit);
+    }
+  } catch (error) {
+    next(error);
+  }
+};
+
 module.exports = {
   getTwit,
   createTwit,
   deleteTwit,
+  likeTwit,
 };
