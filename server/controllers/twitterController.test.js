@@ -24,26 +24,4 @@ describe("Given a createTwits function", () => {
       expect(res.json).toHaveBeenCalledWith(twit);
     });
   });
-
-  describe("When its invoked and it rejects", () => {
-    test("then it should invoke next with an error", async () => {
-      const error = {};
-      Twit.create = jest.fn().mockRejectedValue(error);
-
-      const req = {
-        params: {
-          id: 1,
-        },
-      };
-
-      const res = {};
-      const next = jest.fn();
-
-      await createTwit(req, res, next);
-
-      expect(next).toHaveBeenCalledWith(error);
-      expect(error).toHaveProperty("code");
-      expect(error.code).toBe(400);
-    });
-  });
 });
